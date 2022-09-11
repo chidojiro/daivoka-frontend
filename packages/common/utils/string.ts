@@ -1,4 +1,4 @@
-import { PROJECT_CLASS_NAME_PREFIX } from '../constants';
+import { PROJECT_CLASS_NAME_PREFIX } from '../../constants';
 
 const withProjectClassNamePrefix = (...classNames: string[]) => {
   return [classNames]
