@@ -86,7 +86,6 @@ const ForwardedField = <TComponentProps, TValue>(
       className={className}
       value={resolveValue()}
       ref={ref ?? fieldRef}
-      placeholderInputRef={fieldRef}
       {...restField}
       {...(restProps as any)}
     />
