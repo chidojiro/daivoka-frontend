@@ -1,4 +1,5 @@
 export { AssertUtils } from './assert';
+export { CookiesUtils } from './cookies';
 export { JsonUtils } from './json';
 export { LocalStorageUtils } from './localStorage';
 export { NumberUtils } from './number';
