@@ -39,8 +39,6 @@ export const CreateAccountModal = ({ open, onClose, ...restProps }: CreateAccoun
 
   const { handle: handleRegister, isLoading: isRegistering } = useHandler(registerHandler, {
     onError: (e: any) => {
-      setValue('password', '');
-
       if (e.statusCode === 400) {
         toast.error(`There is already an account registered with the email ${email}!`);
         return false;

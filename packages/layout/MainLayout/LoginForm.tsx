@@ -24,10 +24,13 @@ export const LoginForm = () => {
 
   const { handle: handleLogin, isLoading: isLoggingIn } = useHandler(loginHandler, {
     onError: (e: any) => {
-      setValue('password', '');
-
       if (e.statusCode === 400) {
-        toast.error('Incorrect email or password!');
+        toast.error('Incorrect password!');
+        return false;
+      }
+
+      if (e.statusCode === 404) {
+        toast.error('Email not found, please register for an account!');
         return false;
       }
     },

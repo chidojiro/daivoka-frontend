@@ -24,9 +24,14 @@ myAxios.interceptors.request.use(function (request: AxiosRequestConfig) {
   return request;
 });
 
-myAxios.interceptors.response.use(function (response: any) {
-  return response.data;
-});
+myAxios.interceptors.response.use(
+  (response: any) => {
+    return response.data;
+  },
+  error => {
+    throw error.response.data;
+  }
+);
 
 export const RestApis = myAxios;
 
