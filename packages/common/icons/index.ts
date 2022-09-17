@@ -8,4 +8,6 @@ export {
   FaFlag as FlagIcon,
   FaThumbsUp as ThumbsUpIcon,
   FaThumbsDown as ThumbsDownIcon,
+  FaMinus as MinusIcon,
+  FaCheck as CheckIcon,
 } from 'react-icons/fa';

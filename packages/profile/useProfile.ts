@@ -1,5 +1,6 @@
 import { useAccessTokenCookieState } from '@/auth/useAccessTokenCookieState';
 import { useFetcher } from '@/common/hooks';
+import { LocalStorageUtils } from '@/common/utils';
 import React from 'react';
 import { ProfileApis } from './apis';
 
@@ -12,7 +13,9 @@ export const useProfile = () => {
     isValidating,
     isLagging,
     mutate,
-  } = useFetcher(accessToken && ['useProfile', accessToken], () => ProfileApis.getMyProfile());
+  } = useFetcher(accessToken && ['useProfile', accessToken], () => ProfileApis.getMyProfile(), {
+    onSuccess: data => LocalStorageUtils.set('profile', data),
+  });
 
   return React.useMemo(
     () => ({

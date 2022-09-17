@@ -13,7 +13,7 @@ export const Input = React.forwardRef(({ error, className, size = 'md', ...restP
       ref={ref}
       className={clsx(
         StringUtils.withProjectClassNamePrefix('input'),
-        'shadow-sm focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md text-black outline-none px-2',
+        'shadow-sm focus:border-primary block w-full sm:text-sm border border-gray-300 rounded-md text-black outline-none px-2',
         { 'h-7': size === 'sm', 'h-10': size === 'md' },
         { '!border-danger !focus:border-danger': error },
         className

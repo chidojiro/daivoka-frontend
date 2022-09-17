@@ -10,7 +10,7 @@ module.exports = {
         h1: '28px',
       },
       colors: ({ theme }) => ({
-        primary: theme.colors.indigo[500],
+        primary: theme.colors.sky[500],
         danger: theme.colors.red[500],
       }),
       keyframes: {

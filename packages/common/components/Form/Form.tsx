@@ -6,6 +6,7 @@ import { FieldValues, FormProvider, SubmitHandler, UseFormReturn } from 'react-h
 import { Input, InputProps } from '../Input';
 import { ErrorMessage, ErrorMessageProps } from './ErrorMessage';
 import { Field, FieldProps } from './Field';
+import { Checkbox, CheckboxProps } from '../Checkbox';
 
 export type FormProps<T = any> = Omit<
   React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -53,6 +54,27 @@ const FormInput = React.forwardRef(({ className, ...restProps }: FormFieldProps<
 ));
 FormInput.displayName = 'FormInput';
 
+const FormCheckbox = React.forwardRef(({ className, ...restProps }: FormFieldProps<CheckboxProps, string>, ref) => (
+  <Field
+    {...restProps}
+    className={clsx(StringUtils.withProjectClassNamePrefix('form-checkbox'), className)}
+    component={Checkbox}
+    changeAs={e => {
+      if (restProps.changeAs) {
+        return restProps.changeAs(e);
+      }
+
+      if (e.target.value && e.target.value !== 'true') {
+        return e.target.checked ? e.target.value : undefined;
+      }
+
+      return e.target.checked;
+    }}
+    ref={ref}
+  />
+));
+FormCheckbox.displayName = 'FormCheckbox';
+
 const FormErrorMessage = ({ name, className, ...restProps }: ErrorMessageProps & JSX.IntrinsicElements['p']) => (
   <p
     className={clsx(
@@ -68,3 +90,4 @@ FormInput.displayName = 'FormInput';
 
 Form.ErrorMessage = FormErrorMessage;
 Form.Input = FormInput;
+Form.Checkbox = FormCheckbox;

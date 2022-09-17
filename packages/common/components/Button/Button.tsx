@@ -4,7 +4,7 @@ import { Children, ClassName } from '../../types';
 import { Spinner } from '../Spinner';
 
 type Variant = 'outline' | 'solid' | 'ghost' | 'text';
-type ColorScheme = 'primary' | 'danger';
+type ColorScheme = 'primary' | 'danger' | 'gray';
 type Size = 'sm' | 'md' | 'lg';
 
 type ClassNameByVariant = Partial<Record<Variant, string>>;
@@ -15,10 +15,15 @@ const primaryBackgroundClassNames: ClassNameByVariant = {
 const dangerBackgroundClassNames: ClassNameByVariant = {
   solid: 'bg-danger',
 };
+const grayBackgroundClassNames: ClassNameByVariant = {
+  solid: 'bg-gray-500',
+  ghost: 'hover:bg-gray-50',
+};
 
 const backgroundClassNames: Record<ColorScheme, ClassNameByVariant> = {
   primary: primaryBackgroundClassNames,
   danger: dangerBackgroundClassNames,
+  gray: grayBackgroundClassNames,
 };
 
 const primaryBorderColorClassNames: ClassNameByVariant = {
@@ -27,9 +32,13 @@ const primaryBorderColorClassNames: ClassNameByVariant = {
 const dangerBorderColorClassNames: ClassNameByVariant = {
   outline: 'border-danger',
 };
+const grayBorderColorClassNames: ClassNameByVariant = {
+  outline: 'border-gray-500',
+};
 const borderColorClassNames: Record<ColorScheme, ClassNameByVariant> = {
   danger: dangerBorderColorClassNames,
   primary: primaryBorderColorClassNames,
+  gray: grayBorderColorClassNames,
 };
 
 const primaryTextColorClassNames: ClassNameByVariant = {
@@ -44,9 +53,16 @@ const dangerTextColorClassNames: ClassNameByVariant = {
   solid: 'text-white',
   text: 'text-danger',
 };
+const grayTextColorClassNames: ClassNameByVariant = {
+  ghost: 'text-gray-500',
+  outline: 'text-gray-500',
+  solid: 'text-white',
+  text: 'text-gray-500',
+};
 const textColorClassNames: Record<ColorScheme, ClassNameByVariant> = {
   danger: dangerTextColorClassNames,
   primary: primaryTextColorClassNames,
+  gray: grayTextColorClassNames,
 };
 
 const paddingClassNames: Record<Size, string> = {

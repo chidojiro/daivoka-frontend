@@ -3,6 +3,7 @@ import {
   isFunction as ldIsFunction,
   isNull as ldIsNull,
   isUndefined as ldIsUndefined,
+  isEmpty as ldIsEmpty,
 } from 'lodash-es';
 import React from 'react';
 
@@ -12,6 +13,7 @@ const isRef = <T = Element>(target: unknown): target is React.RefObject<T> =>
 const isArray = ldIsArray;
 const isNull = ldIsNull;
 const isUndefined = ldIsUndefined;
+const isEmpty = ldIsEmpty;
 
 const isNullOrUndefined = (value: any): value is undefined | null => isNull(value) || isUndefined(value);
 
@@ -37,4 +39,5 @@ export const AssertUtils = {
   isNullOrUndefined,
   isChangeEvent,
   isHTMLElement,
+  isEmpty,
 };

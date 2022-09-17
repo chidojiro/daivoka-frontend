@@ -2,6 +2,7 @@ import { TimesIcon } from '@/common/icons';
 import { Children, ClassName } from '@/common/types';
 import { StringUtils } from '@/common/utils';
 import clsx from 'clsx';
+import React from 'react';
 import { Portal } from '../Portal';
 
 type TitleProps = Children & ClassName & JSX.IntrinsicElements['h2'];
@@ -23,6 +24,20 @@ const Title = ({ children, className, ...restProps }: TitleProps) => {
 const Content = ({ children, className }: Children & ClassName) => {
   return (
     <div className={clsx(StringUtils.withProjectClassNamePrefix('modal-content'), 'mt-6', className)}>{children}</div>
+  );
+};
+
+const Actions = ({ children, className, left }: Children & ClassName & { left?: React.ReactNode }) => {
+  return (
+    <div
+      className={clsx(
+        StringUtils.withProjectClassNamePrefix('modal-actions'),
+        'mt-6 flex justify-end items-center gap-2',
+        className
+      )}>
+      {left && <div className='flex-1'>{left}</div>}
+      {children}
+    </div>
   );
 };
 
@@ -70,3 +85,4 @@ export const Modal = ({ className, children, size = 'md', open, onClose, ...rest
 
 Modal.Content = Content;
 Modal.Title = Title;
+Modal.Actions = Actions;

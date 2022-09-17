@@ -1,8 +1,8 @@
-import { MainLayout } from '@/layout/MainLayout';
+import { DashboardPage } from '@/dashboard/DashboardPage';
 import { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return <MainLayout></MainLayout>;
+  return <DashboardPage />;
 };
 
 export default Home;
