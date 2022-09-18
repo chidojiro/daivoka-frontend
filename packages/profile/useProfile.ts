@@ -15,6 +15,7 @@ export const useProfile = () => {
     mutate,
   } = useFetcher(accessToken && ['useProfile', accessToken], () => ProfileApis.getMyProfile(), {
     onSuccess: data => LocalStorageUtils.set('profile', data),
+    onError: () => false,
   });
 
   return React.useMemo(
