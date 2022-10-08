@@ -9,5 +9,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "eslint.packageManager": "yarn",
   "npm.packageManager": "yarn",
-  "cSpell.words": ["clsx", "daivoka", "toastify"]
+  "cSpell.words": ["clsx", "daivoka", "Delayable", "ipas", "toastify"]
 }
