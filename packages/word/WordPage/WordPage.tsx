@@ -16,7 +16,7 @@ export const WordPage = ({}: WordPageProps) => {
   const methods = useForm();
   const { reset } = methods;
 
-  const { word } = useWord({ slug: query.wordSlug as string });
+  const { word, mutateWord } = useWord({ slug: query.wordSlug as string });
 
   React.useEffect(() => {
     reset(word);
@@ -31,9 +31,9 @@ export const WordPage = ({}: WordPageProps) => {
       <h1 className='text-center'>{text}</h1>
       <div className='mt-10'></div>
       {meaningGroups.map(group => (
-        <MeaningGroup key={group._id} group={group} />
+        <MeaningGroup key={group._id} group={group} onDeleteSuccess={() => mutateWord(word)} />
       ))}
-      <AddMeaningGroupSection />
+      <AddMeaningGroupSection onCreateSuccess={() => mutateWord(word)} />
     </MainLayout>
   );
 };

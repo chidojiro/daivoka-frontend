@@ -15,6 +15,7 @@ export type MeaningGroup = {
   _id: string;
   type: MeaningType;
   ipas: IPA[];
+  wordId: string;
 };
 
 export type Word = {

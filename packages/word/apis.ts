@@ -8,4 +8,7 @@ const create = (payload: CreateWordPayload) => RestApis.post<Word>('/words/creat
 const createMeaningGroup = (wordId: string, payload: CreateMeaningGroupPayload) =>
   RestApis.post<Word>(`/words/${wordId}/meaning-group`, payload);
 
-export const WordApis = { create, createMeaningGroup, getBySlug };
+const deleteMeaningGroup = (wordId: string, groupId: string) =>
+  RestApis.delete<null>(`/words/${wordId}/meaning-group/${groupId}`);
+
+export const WordApis = { create, createMeaningGroup, getBySlug, deleteMeaningGroup };

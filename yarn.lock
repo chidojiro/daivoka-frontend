@@ -2504,10 +2504,10 @@ hosted-git-info@^4.0.1:
   dependencies:
     lru-cache "^6.0.0"
 
-hsk-headless@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/hsk-headless/-/hsk-headless-2.2.5.tgz#26063751a90f20515a53cf606eeedc0215c1b518"
-  integrity sha512-shYU6iEjKQAUEKocOqgk8XllSuiFs+dTSjWYYYuRwoQJVyy2LxKc0xRkh+TW6gS7xfoRsdF97E2QsBl/w0zCiQ==
+hsk-headless@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/hsk-headless/-/hsk-headless-2.2.6.tgz#1e803b01331129f3ec6c7786a1e7a7884f61d7ce"
+  integrity sha512-RI9y1BH+I1AXK/T2PBA2/nhPdfZBhgfgI0Po5ql7dOUYiVTpnQ5tfdnoRl3ND0Xpu3Rx2iwp4qy4Ii3f8Da4RQ==
   dependencies:
     "@popperjs/core" "^2.11.5"
     "@types/lodash-es" "^4.17.6"
