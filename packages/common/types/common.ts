@@ -17,3 +17,5 @@ export type OpenClose = {
 };
 
 export type NullOrUndefined = null | undefined;
+
+export type Override<TOriginal, TOverride> = Omit<TOriginal, keyof TOverride> & TOverride;

@@ -58,6 +58,7 @@ export const InfiniteLoader = <T,>({
 
     return (
       <Button
+        variant='plain'
         className={clsx(
           StringUtils.withProjectClassNamePrefix('infinite-loader', 'infinite-loader--on-demand'),
           'inline-block text-xs p-2'

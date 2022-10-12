@@ -10,10 +10,19 @@ module.exports = {
         h1: '28px',
       },
       colors: ({ theme }) => ({
-        primary: theme.colors.sky[500],
-        danger: theme.colors.red[500],
+        primary: { ...theme.colors.sky, DEFAULT: theme.colors.sky[500] },
+        danger: { ...theme.colors.red, DEFAULT: theme.colors.red[500] },
+        success: { ...theme.colors.green, DEFAULT: theme.colors.green[500] },
       }),
       keyframes: {
+        'drawer-enter': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        'drawer-leave': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
         'modal-enter': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
@@ -24,6 +33,8 @@ module.exports = {
         },
       },
       animation: {
+        'drawer-enter': 'drawer-enter .2s ease-in-out',
+        'drawer-leave': 'drawer-leave .2s ease-in-out',
         'modal-enter': 'modal-enter .2s ease-out',
         'modal-leave': 'modal-leave .2s ease-in',
       },

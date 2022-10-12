@@ -7,8 +7,9 @@ import { Input, InputProps } from '../Input';
 import { ErrorMessage, ErrorMessageProps } from './ErrorMessage';
 import { Field, FieldProps } from './Field';
 import { Checkbox, CheckboxProps } from '../Checkbox';
+import { Select, SelectProps } from '../Select';
 
-export type FormProps<T = any> = Omit<
+export type FormProps<T extends FieldValues> = Omit<
   React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
   'onSubmit'
 > & {
@@ -54,6 +55,15 @@ const FormInput = React.forwardRef(({ className, ...restProps }: FormFieldProps<
 ));
 FormInput.displayName = 'FormInput';
 
+const FormSelect = React.forwardRef(({ className, ...restProps }: FormFieldProps<SelectProps, string>, ref) => (
+  <Field
+    {...restProps}
+    className={clsx(StringUtils.withProjectClassNamePrefix('form-select'), className)}
+    component={Select}
+  />
+));
+FormSelect.displayName = 'FormSelect';
+
 const FormCheckbox = React.forwardRef(({ className, ...restProps }: FormFieldProps<CheckboxProps, string>, ref) => (
   <Field
     {...restProps}
@@ -91,3 +101,4 @@ FormInput.displayName = 'FormInput';
 Form.ErrorMessage = FormErrorMessage;
 Form.Input = FormInput;
 Form.Checkbox = FormCheckbox;
+Form.Select = FormSelect;

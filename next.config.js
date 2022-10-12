@@ -12,7 +12,6 @@ const withTM = require('next-transpile-modules')(['hsk-headless']); // pass the 
 const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
-    console.log(`${'http://localhost:8000'}/api/:path*'`);
     return [
       {
         source: '/api/:path*',

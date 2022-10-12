@@ -10,4 +10,7 @@ export {
   FaThumbsDown as ThumbsDownIcon,
   FaMinus as MinusIcon,
   FaCheck as CheckIcon,
+  FaChevronDown as ChevronDownIcon,
+  FaCheckCircle as CheckCircleIcon,
+  FaEllipsisV as EllipsisVIcon,
 } from 'react-icons/fa';

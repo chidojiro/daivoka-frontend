@@ -1,29 +1,36 @@
 import clsx from 'clsx';
 import React from 'react';
-import { Children, ClassName } from '../../types';
+import { Children, ClassName, Override } from '../../types';
 import { Spinner } from '../Spinner';
 
-type Variant = 'outline' | 'solid' | 'ghost' | 'text';
-type ColorScheme = 'primary' | 'danger' | 'gray';
+type Variant = 'outline' | 'solid' | 'ghost' | 'plain';
+type ColorScheme = 'primary' | 'danger' | 'success' | 'gray';
 type Size = 'sm' | 'md' | 'lg';
 
 type ClassNameByVariant = Partial<Record<Variant, string>>;
 
 const primaryBackgroundClassNames: ClassNameByVariant = {
   solid: 'bg-primary',
+  ghost: 'hover:bg-primary-50',
 };
 const dangerBackgroundClassNames: ClassNameByVariant = {
   solid: 'bg-danger',
+  ghost: 'hover:bg-danger-50',
 };
 const grayBackgroundClassNames: ClassNameByVariant = {
   solid: 'bg-gray-500',
   ghost: 'hover:bg-gray-50',
+};
+const successBackgroundClassNames: ClassNameByVariant = {
+  solid: 'bg-success-500',
+  ghost: 'hover:bg-success-50',
 };
 
 const backgroundClassNames: Record<ColorScheme, ClassNameByVariant> = {
   primary: primaryBackgroundClassNames,
   danger: dangerBackgroundClassNames,
   gray: grayBackgroundClassNames,
+  success: successBackgroundClassNames,
 };
 
 const primaryBorderColorClassNames: ClassNameByVariant = {
@@ -35,34 +42,41 @@ const dangerBorderColorClassNames: ClassNameByVariant = {
 const grayBorderColorClassNames: ClassNameByVariant = {
   outline: 'border-gray-500',
 };
+const successBorderColorClassNames: ClassNameByVariant = {
+  outline: 'border-success-500',
+};
 const borderColorClassNames: Record<ColorScheme, ClassNameByVariant> = {
   danger: dangerBorderColorClassNames,
   primary: primaryBorderColorClassNames,
   gray: grayBorderColorClassNames,
+  success: successBorderColorClassNames,
 };
 
 const primaryTextColorClassNames: ClassNameByVariant = {
   ghost: 'text-primary',
   outline: 'text-primary',
   solid: 'text-white',
-  text: 'text-primary',
 };
 const dangerTextColorClassNames: ClassNameByVariant = {
   ghost: 'text-danger',
   outline: 'text-danger',
   solid: 'text-white',
-  text: 'text-danger',
 };
 const grayTextColorClassNames: ClassNameByVariant = {
   ghost: 'text-gray-500',
   outline: 'text-gray-500',
   solid: 'text-white',
-  text: 'text-gray-500',
+};
+const successTextColorClassNames: ClassNameByVariant = {
+  ghost: 'text-success-500',
+  outline: 'text-success-500',
+  solid: 'text-white',
 };
 const textColorClassNames: Record<ColorScheme, ClassNameByVariant> = {
   danger: dangerTextColorClassNames,
   primary: primaryTextColorClassNames,
   gray: grayTextColorClassNames,
+  success: successTextColorClassNames,
 };
 
 const paddingClassNames: Record<Size, string> = {
@@ -73,25 +87,27 @@ const paddingClassNames: Record<Size, string> = {
 
 const heightClassNames: Record<Size, string> = { sm: 'h-7', md: 'h-8', lg: 'h-9' };
 
-export type ButtonProps = Children &
-  ClassName &
-  Omit<JSX.IntrinsicElements['button'], 'ref'> & {
-    variant?: Variant;
-    colorScheme?: ColorScheme;
-    size?: Size;
-    pill?: boolean;
-    square?: boolean;
-    iconLeft?: React.ReactNode;
-    iconRight?: React.ReactNode;
-    loading?: boolean;
-    style?: React.CSSProperties;
-    ref?: React.RefObject<HTMLButtonElement>;
-  };
+export type ButtonProps = Override<
+  JSX.IntrinsicElements['button'],
+  Children &
+    ClassName & {
+      variant?: Variant;
+      colorScheme?: ColorScheme;
+      size?: Size;
+      pill?: boolean;
+      square?: boolean;
+      iconLeft?: React.ReactNode;
+      iconRight?: React.ReactNode;
+      loading?: boolean;
+      style?: React.CSSProperties;
+      ref?: React.RefObject<HTMLButtonElement>;
+    }
+>;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      variant,
+      variant = 'solid',
       colorScheme = 'primary',
       className,
       children,
@@ -107,7 +123,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    if (!variant)
+    if (variant === 'plain')
       return (
         <button
           {...restProps}
