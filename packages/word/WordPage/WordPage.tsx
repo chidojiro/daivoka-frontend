@@ -31,7 +31,13 @@ export const WordPage = ({}: WordPageProps) => {
       <h1 className='text-center'>{text}</h1>
       <div className='mt-10'></div>
       {meaningGroups.map(group => (
-        <MeaningGroup key={group._id} group={group} onDeleteSuccess={() => mutateWord(word)} />
+        <MeaningGroup
+          key={group._id}
+          word={word}
+          group={group}
+          onDeleteSuccess={mutateWord}
+          onUpdateSuccess={mutateWord}
+        />
       ))}
       <AddMeaningGroupSection onCreateSuccess={() => mutateWord(word)} />
     </MainLayout>

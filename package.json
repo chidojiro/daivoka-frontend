@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
-    "hsk-headless": "^2.2.6",
+    "hsk-headless": "^2.2.7",
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "next": "12.2.5",

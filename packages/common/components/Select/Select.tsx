@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@/common/icons';
+import { CheckIcon, ChevronDownIcon } from '@/common/icons';
 import { Option, Override } from '@/common/types';
 import { StringUtils } from '@/common/utils';
 import clsx from 'clsx';
@@ -31,6 +31,8 @@ export const Select = ({ className, options, value: valueProp, onChange, ...rest
     <div ref={ref} className={clsx(StringUtils.withProjectClassNamePrefix('select'), className)} {...restProps}>
       <Dropdown
         open={disclosure.isOpen}
+        value={value}
+        onChange={setValue}
         trigger={
           <Button
             variant='plain'
@@ -53,8 +55,9 @@ export const Select = ({ className, options, value: valueProp, onChange, ...rest
           </Button>
         }>
         {options.map(({ label, value }) => (
-          <DropdownItem key={value} value={value}>
-            {label}
+          <DropdownItem key={value} value={value} className='flex items-center justify-between'>
+            <span>{label}</span>
+            {value === selectedOption.value && <CheckIcon />}
           </DropdownItem>
         ))}
       </Dropdown>

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { CreateMeaningGroupPayload } from '../types';
-import { useWord } from '../useWord';
 
 export type AddMeaningSectionProps = {
   //
@@ -13,8 +12,6 @@ export type AddMeaningSectionProps = {
 
 export const AddMeaningSection = ({}: AddMeaningSectionProps) => {
   const { query } = useRouter();
-
-  const { word } = useWord({ slug: query.wordSlug as string });
 
   const addGroupDisclosure = useDisclosure();
 
@@ -32,7 +29,7 @@ export const AddMeaningSection = ({}: AddMeaningSectionProps) => {
 
   if (!addGroupDisclosure.isOpen) {
     return (
-      <Button onClick={addGroupDisclosure.open} variant='ghost' iconLeft={<PlusIcon />} className='px-0'>
+      <Button onClick={addGroupDisclosure.open} variant='ghost' iconLeft={<PlusIcon />} className='px-1'>
         Add a meaning
       </Button>
     );

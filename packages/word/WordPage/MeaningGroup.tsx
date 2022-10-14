@@ -5,19 +5,43 @@ import { EllipsisVIcon } from '@/common/icons';
 import { useDisclosure } from 'hsk-headless';
 import { WordApis } from '../apis';
 import { MeaningTypeLabel } from '../constants';
-import { MeaningGroup as TMeaningGroup } from '../types';
+import { MeaningGroup as TMeaningGroup, Word } from '../types';
+import { MeaningGroupForm } from './MeaningGroupForm';
 
 export type MeaningGroupProps = {
+  word: Word;
   group: TMeaningGroup;
-  onDeleteSuccess: () => void;
+  onUpdateSuccess: (word: Word) => void;
+  onDeleteSuccess: (word: Word) => void;
 };
 
-export const MeaningGroup = ({ group: { _id, wordId, type, ipas }, onDeleteSuccess }: MeaningGroupProps) => {
+export const MeaningGroup = ({
+  word,
+  group: { _id, wordId, type, ipas },
+  onDeleteSuccess,
+  onUpdateSuccess,
+}: MeaningGroupProps) => {
   const dropdownDisclosure = useDisclosure();
 
   const { handle: deleteMeaningGroup } = useHandler(() => WordApis.deleteMeaningGroup(wordId, _id), {
     onSuccess: onDeleteSuccess,
   });
+
+  const isEditDisclosure = useDisclosure();
+
+  if (isEditDisclosure.isOpen)
+    return (
+      <MeaningGroupForm
+        word={word}
+        meaningGroupId={_id}
+        onSubmit={async data => {
+          const updatedWord = await WordApis.updateMeaningGroup(word?._id as string, _id, data);
+          onUpdateSuccess(updatedWord);
+          isEditDisclosure.close();
+        }}
+        onCancel={isEditDisclosure.close}
+      />
+    );
 
   return (
     <div className='mb-4'>
@@ -32,7 +56,9 @@ export const MeaningGroup = ({ group: { _id, wordId, type, ipas }, onDeleteSucce
               <EllipsisVIcon />
             </Button>
           }>
-          <DropdownItem value='edit'>Edit</DropdownItem>
+          <DropdownItem value='edit' onClick={isEditDisclosure.open}>
+            Edit
+          </DropdownItem>
           <DropdownItem value='delete' onClick={deleteMeaningGroup}>
             Delete
           </DropdownItem>
