@@ -40,7 +40,7 @@ export const Select = ({ className, options, value: valueProp, onChange, ...rest
               'relative block',
               'shadow-sm',
               'text-left sm:text-sm',
-              'rounded-md border focus:outline-none focus:ring-1 border-gray-300 focus:border-primary focus:ring-primary',
+              'rounded border focus:outline-none border-gray-300 focus:border-primary outline-none',
               'bg-white',
               'w-full h-9 py-2 pl-3 pr-10'
             )}

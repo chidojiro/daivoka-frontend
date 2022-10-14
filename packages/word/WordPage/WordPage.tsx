@@ -1,9 +1,11 @@
+import { Divider } from '@/common/components';
 import { MainLayout } from '@/layout/MainLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useWord } from '../useWord';
 import { AddMeaningGroupSection } from './AddMeaningGroupSection';
+import { AddMeaningSection } from './AddMeaningSection';
 import { MeaningGroup } from './MeaningGroup';
 
 export type WordPageProps = {
@@ -31,13 +33,19 @@ export const WordPage = ({}: WordPageProps) => {
       <h1 className='text-center'>{text}</h1>
       <div className='mt-10'></div>
       {meaningGroups.map(group => (
-        <MeaningGroup
-          key={group._id}
-          word={word}
-          group={group}
-          onDeleteSuccess={mutateWord}
-          onUpdateSuccess={mutateWord}
-        />
+        <div key={group._id}>
+          <MeaningGroup
+            key={group._id}
+            word={word}
+            group={group}
+            onDeleteSuccess={mutateWord}
+            onUpdateSuccess={mutateWord}
+          />
+          <div className='mt-2'>
+            <AddMeaningSection />
+          </div>
+          <Divider className='my-2' />
+        </div>
       ))}
       <AddMeaningGroupSection onCreateSuccess={() => mutateWord(word)} />
     </MainLayout>

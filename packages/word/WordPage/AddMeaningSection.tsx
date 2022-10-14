@@ -1,4 +1,4 @@
-import { Button } from '@/common/components';
+import { Button, Form } from '@/common/components';
 import { PlusIcon } from '@/common/icons';
 import { useDisclosure } from 'hsk-headless';
 import { useRouter } from 'next/router';
@@ -11,8 +11,6 @@ export type AddMeaningSectionProps = {
 };
 
 export const AddMeaningSection = ({}: AddMeaningSectionProps) => {
-  const { query } = useRouter();
-
   const addGroupDisclosure = useDisclosure();
 
   const methods = useForm<CreateMeaningGroupPayload>({
@@ -35,5 +33,11 @@ export const AddMeaningSection = ({}: AddMeaningSectionProps) => {
     );
   }
 
-  return null;
+  return (
+    <Form methods={methods}>
+      <Form.Select name='subtype' className='w-40' options={[]} />
+      <Form.TextArea name='text' className='mt-1' rows={2} />
+      <Form.TextArea name='examples' className='mt-1' rows={2} />
+    </Form>
+  );
 };

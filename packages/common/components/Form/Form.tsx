@@ -8,6 +8,7 @@ import { ErrorMessage, ErrorMessageProps } from './ErrorMessage';
 import { Field, FieldProps } from './Field';
 import { Checkbox, CheckboxProps } from '../Checkbox';
 import { Select, SelectProps } from '../Select';
+import { TextArea, TextAreaProps } from '../TextArea';
 
 export type FormProps<T extends FieldValues> = Omit<
   React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
@@ -55,6 +56,16 @@ const FormInput = React.forwardRef(({ className, ...restProps }: FormFieldProps<
 ));
 FormInput.displayName = 'FormInput';
 
+const FormTextArea = React.forwardRef(({ className, ...restProps }: FormFieldProps<TextAreaProps, string>, ref) => (
+  <Field
+    {...restProps}
+    className={clsx(StringUtils.withProjectClassNamePrefix('form-textArea'), className)}
+    component={TextArea}
+    ref={ref}
+  />
+));
+FormTextArea.displayName = 'FormTextArea';
+
 const FormSelect = React.forwardRef(({ className, ...restProps }: FormFieldProps<SelectProps, string>, ref) => (
   <Field
     {...restProps}
@@ -96,9 +107,10 @@ const FormErrorMessage = ({ name, className, ...restProps }: ErrorMessageProps &
     <ErrorMessage name={name} />
   </p>
 );
-FormInput.displayName = 'FormInput';
+FormErrorMessage.displayName = 'FormErrorMessage';
 
 Form.ErrorMessage = FormErrorMessage;
 Form.Input = FormInput;
+Form.TextArea = FormTextArea;
 Form.Checkbox = FormCheckbox;
 Form.Select = FormSelect;

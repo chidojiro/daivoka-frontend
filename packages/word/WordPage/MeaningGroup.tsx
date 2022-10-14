@@ -1,4 +1,4 @@
-import { Button } from '@/common/components';
+import { Button, Divider } from '@/common/components';
 import { Dropdown, DropdownItem } from '@/common/components/Dropdown';
 import { useHandler } from '@/common/hooks';
 import { EllipsisVIcon } from '@/common/icons';
